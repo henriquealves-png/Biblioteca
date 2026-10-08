@@ -7,32 +7,33 @@ led ledVermelhoB(6);
 led ledVermelhoC(7);
 led ledVermelhoD(18);
 
+Botao botaoA(13);
+Botao botaoB(11);
+Botao botaoC(12);
 
-void setup()
-{
+
+void setup() {
     
+    Serial.begin(9600);
     
-
-    ledVermelhoA.iniciar();
-    ledVermelhoA.ativarPiscar();
-
-    ledVermelhoB.iniciar();
-    ledVermelhoB.ativarPiscar(1000);
-
-
-    ledVermelhoC.iniciar();
-    ledVermelhoC.ativarPiscar(2000);
+    botaoA.iniciar();
+    botaoB.iniciar();
+    botaoC.iniciar();
 
     
-    ledVermelhoD.iniciar();
-    ledVermelhoD.ativarPiscar(4000);
 }
 
-void loop()
-{
+void loop() {
+    
+        botaoA.atualizar();
+        botaoB.atualizar();
+        botaoC.atualizar();
+    
+    if(botaoA.pressionou())
+    {
+        Serial.print("Botao A pressionado");
+    }
 
-    ledVermelhoA.atualizar();
-    ledVermelhoB.atualizar();
-    ledVermelhoC.atualizar();
-    ledVermelhoD.atualizar();
+    Serial.print("Teste");
+ 
 }

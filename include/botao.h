@@ -24,6 +24,8 @@ public:
     void atualizar();
     bool pressionou();
     bool soltou();
+
+    uint32_t tempoDecorrido();
     
 
 };
