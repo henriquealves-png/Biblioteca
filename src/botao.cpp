@@ -2,9 +2,8 @@
 
 #include "botao.h"
 
-Botao::Botao(uint8_t pino): _pinBotao(pino)
+Botao::Botao(uint8_t pino) : _pinBotao(pino)
 {
-    
 }
 
 void Botao::iniciar()
@@ -14,18 +13,39 @@ void Botao::iniciar()
 
 void Botao::atualizar()
 {
-    estadoAnteriorBotao = estadoBotao;
-    estadoBotao = digitalRead(_pinBotao);
+
+    _pressionou = false;
+    _soltou = false;
+
+    _estadoAtualBotao = digitalRead(_pinBotao);
+    if (_estadoAtualBotao != _estadoAnteriorBotao)
+    {
+        _estadoAnteriorBotao = _estadoAtualBotao;
+        _ultimaMudanca_ms = millis();
+    }
+
+    else if (millis() - _ultimaMudanca_ms > _tempoDebounce_ms)
+    {
+        const bool acaoExecutada = (_estadoUltimaAcao == _estadoAtualBotao);
+        if (!acaoExecutada)
+        {
+
+            _estadoUltimaAcao = _estadoAtualBotao;
+            const bool botaoPressionado = !_estadoAtualBotao;
+
+            botaoPressionado
+                ? _pressionou = true
+                : _soltou = true;
+        }
+    }
 }
 
 bool Botao::pressionou()
 {
-    _estaPressionado = true;
-    return _estaPressionado;
+    return _pressionou;
 }
 
 bool Botao::soltou()
 {
-    _estaPressionado = false;
-    return _estaPressionado;
+    return _soltou;
 }

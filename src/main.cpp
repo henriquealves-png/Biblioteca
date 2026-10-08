@@ -7,17 +7,12 @@ led ledVermelhoB(6);
 led ledVermelhoC(7);
 led ledVermelhoD(18);
 
-Botao botao1(2);
-Botao botao2(3);
-Botao botao3(4);
 
 void setup()
 {
     
-    botao1.iniciar();
-    botao2.iniciar();
-    botao3.iniciar();
     
+
     ledVermelhoA.iniciar();
     ledVermelhoA.ativarPiscar();
 
@@ -35,6 +30,7 @@ void setup()
 
 void loop()
 {
+
     ledVermelhoA.atualizar();
     ledVermelhoB.atualizar();
     ledVermelhoC.atualizar();

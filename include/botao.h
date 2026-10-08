@@ -9,9 +9,14 @@ class Botao
 {
 private:
     uint8_t _pinBotao;
-    bool estadoBotao = 0;
-    bool estadoAnteriorBotao = 0;
-    bool _estaPressionado = false;
+    bool _estadoAtualBotao = 0;
+    bool _estadoAnteriorBotao = 0;
+    bool _pressionou = false;
+    bool _soltou = false;
+    uint32_t _ultimaMudanca_ms = 0;
+    uint32_t _tempoDebounce_ms = 20;
+    bool _estadoUltimaAcao = HIGH;
+
 public:
     Botao(uint8_t pino);
 
